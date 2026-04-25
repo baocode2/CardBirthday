@@ -205,7 +205,7 @@ function RoyalTier({ radius, height, y, bodyColor, isDark = false, hasText = fal
         {hasText && (
           <group>
             {[
-              { c: 'L', a: -0.32 },
+              { c: 'L', a: -0.28 },
               { c: 'i', a: -0.19 },
               { c: 'n', a: -0.10 },
               { c: 'h', a:  0.03 },

@@ -1,12 +1,16 @@
 import { motion } from 'motion/react';
 import CakeSection from './components/CakeSection';
 import Particles from './components/Particles';
+import MusicPlayer from './components/MusicPlayer';
 
 export default function App() {
   return (
     <div className="relative">
       {/* Global sparkle overlay */}
       <Particles />
+
+      {/* Global background music */}
+      <MusicPlayer />
 
       {/* Section 1: Royal Birthday Cake – click cake to open card */}
       <CakeSection />
