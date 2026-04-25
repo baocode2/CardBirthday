@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&family=Great+Vibes&display=swap');
+@import "tailwindcss";
+
+/* ============================================
+   DESIGN TOKENS / CSS VARIABLES
+   ============================================ */
+@theme {
+  --color-pink-soft: #F8B4C8;
+  --color-pink-deep: #E891A8;
+  --color-pink-light: #FDE2E8;
+  --color-rose-gold: #E8A87C;
+  --color-rose-warm: #D4A574;
+  --color-gold: #FFD700;
+  --color-gold-muted: #C9A84C;
+  --color-gold-shimmer: #F5D280;
+  --color-cream: #FFF5EE;
+  --color-cream-warm: #FFF0E5;
+  --color-chocolate: #3D2914;
+  --color-chocolate-light: #6B4226;
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-script: 'Great Vibes', cursive;
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: #0a0608;
+  color: #F5D280;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 8, 5, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #8B0000, #D4AF37);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #A00000, #C9A84C);
+}
+
+/* ============================================
+   GLASSMORPHISM UTILITIES
+   ============================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(248, 180, 200, 0.2);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 8px 32px rgba(248, 180, 200, 0.3);
+}
+
+.glass-dark {
+  background: rgba(61, 41, 20, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   GLOW EFFECTS
+   ============================================ */
+.glow-gold {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3),
+              0 0 30px rgba(255, 215, 0, 0.15),
+              0 0 60px rgba(255, 215, 0, 0.08);
+}
+
+.glow-pink {
+  box-shadow: 0 0 15px rgba(248, 180, 200, 0.4),
+              0 0 30px rgba(248, 180, 200, 0.2),
+              0 0 60px rgba(248, 180, 200, 0.1);
+}
+
+.glow-text {
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.4),
+               0 0 40px rgba(255, 215, 0, 0.2);
+}
+
+/* ============================================
+   3D FLIP CARD
+   ============================================ */
+.flip-card {
+  perspective: 1200px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* ============================================
+   PARTICLE / SPARKLE ANIMATIONS
+   ============================================ */
+@keyframes sparkle-float {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateY(-10px) rotate(36deg) scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateY(-80px) rotate(180deg) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-160px) rotate(360deg) scale(0);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(2deg); }
+  50% { transform: translateY(-5px) rotate(-1deg); }
+  75% { transform: translateY(-15px) rotate(1deg); }
+}
+
+@keyframes shimmer-slide {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(255,215,0,0.3), 0 0 20px rgba(255,215,0,0.1); }
+  50% { box-shadow: 0 0 20px rgba(255,215,0,0.5), 0 0 40px rgba(255,215,0,0.2), 0 0 60px rgba(255,215,0,0.1); }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--color-gold-muted) 0%,
+    var(--color-gold) 25%,
+    var(--color-gold-shimmer) 50%,
+    var(--color-gold) 75%,
+    var(--color-gold-muted) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-slide 3s linear infinite;
+}
+
+/* ============================================
+   CANDLE FLAME ANIMATION
+   ============================================ */
+@keyframes flame-flicker {
+  0% { transform: scaleY(1) scaleX(1) rotate(0deg); opacity: 1; }
+  10% { transform: scaleY(1.05) scaleX(0.95) rotate(-1deg); }
+  20% { transform: scaleY(0.95) scaleX(1.05) rotate(1deg); opacity: 0.9; }
+  30% { transform: scaleY(1.1) scaleX(0.9) rotate(-2deg); }
+  40% { transform: scaleY(0.9) scaleX(1.1) rotate(0deg); opacity: 1; }
+  50% { transform: scaleY(1.08) scaleX(0.92) rotate(2deg); }
+  60% { transform: scaleY(0.95) scaleX(1.05) rotate(-1deg); opacity: 0.85; }
+  70% { transform: scaleY(1.02) scaleX(0.98) rotate(1deg); }
+  80% { transform: scaleY(1.06) scaleX(0.94) rotate(-2deg); opacity: 1; }
+  90% { transform: scaleY(0.97) scaleX(1.03) rotate(0deg); }
+  100% { transform: scaleY(1) scaleX(1) rotate(0deg); opacity: 1; }
+}
+
+.flame {
+  animation: flame-flicker 1.5s ease-in-out infinite;
+}
+
+@keyframes flame-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px 3px rgba(255, 200, 50, 0.6),
+                0 0 16px 6px rgba(255, 150, 30, 0.3),
+                0 0 30px 10px rgba(255, 100, 0, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 12px 5px rgba(255, 200, 50, 0.8),
+                0 0 24px 10px rgba(255, 150, 30, 0.4),
+                0 0 40px 15px rgba(255, 100, 0, 0.2);
+  }
+}
+
+/* ============================================
+   3D CAKE ROTATION
+   ============================================ */
+.cake-scene {
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+}
+
+.cake-container-3d {
+  transform-style: preserve-3d;
+}
+
+/* ============================================
+   FLOATING HEARTS / DECORATIONS
+   ============================================ */
+@keyframes float-heart {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+    transform: translateY(80vh) rotate(20deg) scale(1);
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+  50% { transform: scale(1.1) rotate(3deg); }
+  70% { transform: scale(0.95) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .flip-card {
+    perspective: 800px;
+  }
+}
